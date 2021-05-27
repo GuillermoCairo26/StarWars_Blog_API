@@ -24,38 +24,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
-exports.User = void 0;
+exports.Personaje = void 0;
 var typeorm_1 = require("typeorm");
-var FavPlaneta_1 = require("./FavPlaneta");
 var FavPersonaje_1 = require("./FavPersonaje");
-var User = /** @class */ (function (_super) {
-    __extends(User, _super);
-    function User() {
+var Personaje = /** @class */ (function (_super) {
+    __extends(Personaje, _super);
+    function Personaje() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], User.prototype, "id");
-    __decorate([
-        typeorm_1.Column({ unique: true }),
-        __metadata("design:type", String)
-    ], User.prototype, "nombre_usuario");
+    ], Personaje.prototype, "id");
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], User.prototype, "contrase\u00F1a_usuario");
+    ], Personaje.prototype, "nombre");
     __decorate([
-        typeorm_1.OneToMany(function () { return FavPersonaje_1.FavPersonaje; }, function (favPersonaje) { return favPersonaje.user; }),
-        __metadata("design:type", Array)
-    ], User.prototype, "favPersonajes");
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Personaje.prototype, "a\u00F1o_nacimiento");
     __decorate([
-        typeorm_1.OneToMany(function () { return FavPlaneta_1.FavPlaneta; }, function (favPlaneta) { return favPlaneta.user; }),
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Personaje.prototype, "genero");
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Personaje.prototype, "color_cabello");
+    __decorate([
+        typeorm_1.OneToMany(function () { return FavPersonaje_1.FavPersonaje; }, function (favPersonaje) { return favPersonaje.personaje; }),
         __metadata("design:type", Array)
-    ], User.prototype, "favPlanetas");
-    User = __decorate([
+    ], Personaje.prototype, "favPersonajes");
+    Personaje = __decorate([
         typeorm_1.Entity()
-    ], User);
-    return User;
+    ], Personaje);
+    return Personaje;
 }(typeorm_1.BaseEntity));
-exports.User = User;
+exports.Personaje = Personaje;

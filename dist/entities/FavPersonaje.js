@@ -24,36 +24,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
-exports.Users = void 0;
+exports.FavPersonaje = void 0;
 var typeorm_1 = require("typeorm");
-var Users = /** @class */ (function (_super) {
-    __extends(Users, _super);
-    function Users() {
+var User_1 = require("./User");
+var Personaje_1 = require("./Personaje");
+var FavPersonaje = /** @class */ (function (_super) {
+    __extends(FavPersonaje, _super);
+    function FavPersonaje() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], Users.prototype, "id");
+    ], FavPersonaje.prototype, "id");
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Users.prototype, "first_name");
+        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.favPersonajes; }),
+        __metadata("design:type", User_1.User)
+    ], FavPersonaje.prototype, "user");
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Users.prototype, "last_name");
-    __decorate([
-        typeorm_1.Column({ unique: true }),
-        __metadata("design:type", String)
-    ], Users.prototype, "email");
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Users.prototype, "password");
-    Users = __decorate([
+        typeorm_1.ManyToOne(function () { return Personaje_1.Personaje; }, function (personaje) { return personaje.favPersonajes; }),
+        __metadata("design:type", Personaje_1.Personaje)
+    ], FavPersonaje.prototype, "personaje");
+    FavPersonaje = __decorate([
         typeorm_1.Entity()
-    ], Users);
-    return Users;
+    ], FavPersonaje);
+    return FavPersonaje;
 }(typeorm_1.BaseEntity));
-exports.Users = Users;
+exports.FavPersonaje = FavPersonaje;

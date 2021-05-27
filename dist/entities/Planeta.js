@@ -24,33 +24,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
-exports.Planet = void 0;
+exports.Planeta = void 0;
 var typeorm_1 = require("typeorm");
-var Users_1 = require("./Users");
-var Planet = /** @class */ (function (_super) {
-    __extends(Planet, _super);
-    function Planet() {
+var FavPlaneta_1 = require("./FavPlaneta");
+var Planeta = /** @class */ (function (_super) {
+    __extends(Planeta, _super);
+    function Planeta() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], Planet.prototype, "id");
+    ], Planeta.prototype, "id");
     __decorate([
-        typeorm_1.Column({ unique: true }),
+        typeorm_1.Column(),
         __metadata("design:type", String)
-    ], Planet.prototype, "name");
+    ], Planeta.prototype, "nombre_planeta");
     __decorate([
-        typeorm_1.Column({ nullable: true }),
+        typeorm_1.Column(),
         __metadata("design:type", String)
-    ], Planet.prototype, "picture_url");
+    ], Planeta.prototype, "clima");
     __decorate([
-        typeorm_1.ManyToMany(function () { return Users_1.Users; }, function (user) { return user.planets; }),
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Planeta.prototype, "cantidad_habitantes");
+    __decorate([
+        typeorm_1.OneToMany(function () { return FavPlaneta_1.FavPlaneta; }, function (favPlaneta) { return favPlaneta.planeta; }),
         __metadata("design:type", Array)
-    ], Planet.prototype, "users");
-    Planet = __decorate([
+    ], Planeta.prototype, "favPlanetas");
+    Planeta = __decorate([
         typeorm_1.Entity()
-    ], Planet);
-    return Planet;
+    ], Planeta);
+    return Planeta;
 }(typeorm_1.BaseEntity));
-exports.Planet = Planet;
+exports.Planeta = Planeta;

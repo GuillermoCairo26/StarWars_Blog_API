@@ -24,38 +24,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
-exports.User = void 0;
+exports.FavPlaneta = void 0;
 var typeorm_1 = require("typeorm");
-var FavPlaneta_1 = require("./FavPlaneta");
-var FavPersonaje_1 = require("./FavPersonaje");
-var User = /** @class */ (function (_super) {
-    __extends(User, _super);
-    function User() {
+var User_1 = require("./User");
+var Planeta_1 = require("./Planeta");
+var FavPlaneta = /** @class */ (function (_super) {
+    __extends(FavPlaneta, _super);
+    function FavPlaneta() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], User.prototype, "id");
+    ], FavPlaneta.prototype, "id");
     __decorate([
-        typeorm_1.Column({ unique: true }),
-        __metadata("design:type", String)
-    ], User.prototype, "nombre_usuario");
+        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.favPlanetas; }),
+        __metadata("design:type", User_1.User)
+    ], FavPlaneta.prototype, "user");
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], User.prototype, "contrase\u00F1a_usuario");
-    __decorate([
-        typeorm_1.OneToMany(function () { return FavPersonaje_1.FavPersonaje; }, function (favPersonaje) { return favPersonaje.user; }),
-        __metadata("design:type", Array)
-    ], User.prototype, "favPersonajes");
-    __decorate([
-        typeorm_1.OneToMany(function () { return FavPlaneta_1.FavPlaneta; }, function (favPlaneta) { return favPlaneta.user; }),
-        __metadata("design:type", Array)
-    ], User.prototype, "favPlanetas");
-    User = __decorate([
+        typeorm_1.ManyToOne(function () { return Planeta_1.Planeta; }, function (planeta) { return planeta.favPlanetas; }),
+        __metadata("design:type", Planeta_1.Planeta)
+    ], FavPlaneta.prototype, "planeta");
+    FavPlaneta = __decorate([
         typeorm_1.Entity()
-    ], User);
-    return User;
+    ], FavPlaneta);
+    return FavPlaneta;
 }(typeorm_1.BaseEntity));
-exports.User = User;
+exports.FavPlaneta = FavPlaneta;
